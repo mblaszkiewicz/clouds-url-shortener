@@ -3,18 +3,15 @@ class Database:
         self.url_mappings = {}
         self.id = 0
 
-    # Deleting entire mapping dictionary
     def delete_mappings(self):
         """Deletes all mappings stored in the memory"""
         self.url_mappings.clear()
         self.id = 0
 
-    # Deleting the mapping for a given ID
     def delete_mapping(self, idx):
         """Deletes single mapping identified by the ID (parameter)"""
         self.url_mappings.pop(idx)
 
-    # Adding a new mapping - exception thrown when a url is already in the dictionary
     def add_mapping(self, url):
         """Adds a new URL to the data set, assigning first consecutive unassigned integer as the ID. If URL already
         exists, throws Exception.

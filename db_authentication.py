@@ -3,7 +3,9 @@ class UsersDatabase:
         self.users_db = {}
 
     def create_new_user(self, username, password):
-        """Function to add a new user to the database. Might throw KeyError if username does not exist. """
+        """Function to add a new user to the database. Throws KeyError if username already exist. """
+        if username in self.users_db:
+            raise KeyError()
         self.users_db[username] = password
         return
 

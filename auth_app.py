@@ -18,8 +18,11 @@ def create_new_user():
     # Checking if both required fields are in the form fields of the request
     if 'username' not in request.form.keys() or 'password' not in request.form.keys():
         abort(400)
-    users_db.create_new_user(request.form.get('username'), request.form.get('password'))
-    return jsonify({"success": True}), 200
+    try:
+        users_db.create_new_user(request.form.get('username'), request.form.get('password'))
+        return jsonify({"success": True}), 200
+    except KeyError:
+        abort(400)
 
 
 @app.route('/users/login', methods=["POST"])
