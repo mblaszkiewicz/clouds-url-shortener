@@ -9,25 +9,31 @@ Dependencies:
 
 ## Running the services
 
-### Running the authorization service
+### Running the authentication service
 1. Change directory to the `url-shortener` directory of the project
-2. Set following environment variables: 
+2. Create a virtual environment (optional, example command: `virtualenv testing`, then activate `source testing/bin/activate`)
+3. Install requirements: `pip install -r requirements.txt`
+4. Set following environment variables: 
 ```
-FLASK_APP = auth_app.py
-FLASK_ENV = development
-FLASK_DEBUG = 0
+FLASK_APP=auth_app.py
+FLASK_ENV=development
+FLASK_DEBUG=0
 ```
-3. Run command `python -m flask run -p 5001`, where 5001 might be replaced with a different port number
+5. Run command `python -m flask run -p 5001`, where 5001 might be replaced with a different port number
 
 ### Running the URL-shortener service
+(First three steps overlap with the authentication service)
+
 1. Change directory to the `url-shortener` directory of the project
-2. Set following environment variables: 
+2. Create a virtual environment (optional, example command: `virtualenv testing`, then activate `source testing/bin/activate`)
+3. Install requirements: `pip install -r requirements.txt`
+4. Set following environment variables: 
 ```
 FLASK_APP = shortener_app.py
 FLASK_ENV = development
 FLASK_DEBUG = 0
 ```
-3. Run command `python -m flask run -p 5000`, where 5001 might be replaced with a different port number
+5. Run command `python -m flask run -p 5000`, where 5001 might be replaced with a different port number
 
 ### Running the Nginx reverse proxy
 Requires Nginx server to be installed at the machine.
