@@ -16,15 +16,15 @@ def delete_url(short_url):
 
 
 # function for posting the original_url and the generated short_url into database
-def post_url(original_url):
+def add_url(original_url):
     urls = pd.read_csv("./data/urls.csv", dtype={"original_url": object, "short_url": object})
-    # if url does not exist in database, post the url into database
+    # if url does not exist in database, add new url to the database
     if not (if_url_exists(original_url, urls)):
         # generate short_url, original_url -> id -> base62-short_url
         short_url = get_short_url(original_url)
         the_url = pd.DataFrame({"original_url": [str(original_url)], "short_url": [str(short_url)]})
-        new_urls = pd.concat([urls,the_url],ignore_index=True)
-        new_urls.to_csv("./data/urls.csv",index = False)
+        new_urls = pd.concat([urls, the_url], ignore_index=True)
+        new_urls.to_csv("./data/urls.csv", index = False)
     # if url exists in database, do not post
     else:
         print("url exists")
@@ -54,7 +54,7 @@ def get_url_index(original_url):
 
 # function for getting original_url from short_url in db
 def get_url(short_url):
-    urls = pd.read_csv("./data/urls.csv", dtype={ "original_url" : object, "short_url": object})
+    urls = pd.read_csv("./data/urls.csv", dtype={"original_url": object, "short_url": object})
     original_url = urls[urls["short_url"] == short_url]["original_url"].tolist()[0]
     return original_url
 
@@ -64,6 +64,11 @@ def get_short_url_fromDB(original_url):
     urls = pd.read_csv("./data/urls.csv", dtype={ "original_url" : object, "short_url": object})
     short_url = urls[urls["original_url"] == original_url]["short_url"].tolist()[0]
     return short_url
+
+
+def get_all_urls():
+    urls = pd.read_csv("./data/urls.csv", dtype={"original_url": object, "short_url": object})
+    return urls
 
 
 def encode(num, alphabet=BASE62):
