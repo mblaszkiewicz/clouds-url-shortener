@@ -9,4 +9,4 @@ COPY . .
 ENV FLASK_APP=shortener_app.py
 ENV FLASK_ENV=development
 ENV FLASK_DEBUG=0
-CMD ["python", "-m", "flask", "run", "-p", "5000"]
+CMD ["python", "-m", "flask", "run", "-p", "5000", "--host", "0.0.0.0"]

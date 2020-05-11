@@ -9,5 +9,5 @@ COPY . .
 ENV FLASK_APP=auth_app.py
 ENV FLASK_ENV=development
 ENV FLASK_DEBUG=0
-CMD ["python", "-m", "flask", "run", "-p", "5001"] 
+CMD ["python", "-m", "flask", "run", "-p", "5001", "--host", "0.0.0.0"] 
 
