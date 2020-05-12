@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shortener-deploy
+  labels:
+    app: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+       - name: auth-app
+         image: auth-app:1
+         ports:
+           - containerPort: 5001
+       - name: url-shortener
+         image: url-shortener:1
+         ports:
+           - containerPort: 5000
