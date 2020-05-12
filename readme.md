@@ -7,6 +7,32 @@ Dependencies:
 - Django (for URL validation)
 - JWT
 
+## Docker commands
+Building
+```
+docker build -t url-shortener:1 url-shortener/.
+docker build -t auth-app:1 auth-app/.
+docker build -t nginx-test nginx/.
+```
+Creating network
+```
+docker network create dev
+```
+Running
+```
+docker run -d -p 5001:5001 --net dev --net-alias auth-app auth-app:1
+docker run -d -p 5001:5001 --net dev --net-alias auth-app auth-app:1
+docker run -i -p 80:80 --net dev nginx-test
+```
+
+## Kubernetes
+Running the pods, deployments and services:
+```
+kubectl create -f pod.yaml
+kubectl create -f deployment.yaml
+kubectl create -f service.yaml
+```
+
 ## Running the services
 
 ### Running the authentication service
